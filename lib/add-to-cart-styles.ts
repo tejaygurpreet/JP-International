@@ -12,3 +12,15 @@ export function addToCartGradientClasses(...extra: string[]) {
     ...extra
   );
 }
+
+/** Same blue gradient as Add to Cart, without drop-shadow / glow (e.g. search empty state CTA) */
+export function addToCartGradientClassesNoGlow(...extra: string[]) {
+  return cn(
+    "bg-gradient-to-b from-[#1a9cff] from-[0%] via-[#0b82f0] via-[45%] to-[#0668d4] to-[100%] text-white",
+    "shadow-none hover:shadow-none",
+    "hover:from-[#4db0ff] hover:via-[#2a9dff] hover:to-[#0b82f0]",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00a3ff]/55 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+    "transition-[background-color,filter] duration-300",
+    ...extra
+  );
+}

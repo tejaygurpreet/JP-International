@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
+import { playCartAddSound, playCartRemoveSound } from "@/lib/cartSounds";
 import { priceStringToCents } from "@/lib/price";
 
 export type CartLine = {
@@ -27,6 +28,9 @@ type CartState = {
   /** Increments on each add-to-cart for header cart icon animation */
   cartAnimationGeneration: number;
   isDrawerOpen: boolean;
+  /** Cart add/remove UI sounds (add-to-cart / remove-from-cart mp3) */
+  enableSounds: boolean;
+  setEnableSounds: (enabled: boolean) => void;
   openDrawer: () => void;
   closeDrawer: () => void;
   toggleDrawer: () => void;
@@ -59,6 +63,8 @@ export const useCartStore = create<CartState>()(
       items: [],
       cartAnimationGeneration: 0,
       isDrawerOpen: false,
+      enableSounds: true,
+      setEnableSounds: (enabled) => set({ enableSounds: enabled }),
       openDrawer: () => set({ isDrawerOpen: true }),
       closeDrawer: () => set({ isDrawerOpen: false }),
       toggleDrawer: () => set({ isDrawerOpen: !get().isDrawerOpen }),
@@ -93,12 +99,16 @@ export const useCartStore = create<CartState>()(
             cartAnimationGeneration: get().cartAnimationGeneration + 1,
           });
         }
+        playCartAddSound(get().enableSounds);
       },
-      removeItem: (id) =>
-        set({ items: get().items.filter((i) => i.id !== id) }),
+      removeItem: (id) => {
+        playCartRemoveSound(get().enableSounds);
+        set({ items: get().items.filter((i) => i.id !== id) });
+      },
       updateQuantity: (id, quantity) => {
         const q = Math.floor(quantity);
         if (q <= 0) {
+          playCartRemoveSound(get().enableSounds);
           set({ items: get().items.filter((i) => i.id !== id) });
           return;
         }
@@ -117,10 +127,13 @@ export const useCartStore = create<CartState>()(
     }),
     {
       name: "jp-parts-cart-v2",
-      partialize: (state) => ({ items: state.items }),
+      partialize: (state) => ({
+        items: state.items,
+        enableSounds: state.enableSounds,
+      }),
       merge: (persistedState, currentState) => {
         if (persistedState == null) return currentState;
-        const p = persistedState as { items?: unknown };
+        const p = persistedState as { items?: unknown; enableSounds?: unknown };
         const raw = p.items;
         const items = Array.isArray(raw)
           ? raw
@@ -129,7 +142,11 @@ export const useCartStore = create<CartState>()(
               )
               .filter((x): x is CartLine => x !== null)
           : currentState.items;
-        return { ...currentState, items };
+        const enableSounds =
+          typeof p.enableSounds === "boolean"
+            ? p.enableSounds
+            : currentState.enableSounds;
+        return { ...currentState, items, enableSounds };
       },
     }
   )

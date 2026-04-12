@@ -17,6 +17,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
+import { addToCartGradientClassesNoGlow } from "@/lib/add-to-cart-styles";
 import { imageSrc } from "@/lib/asset-version";
 import { cn } from "@/lib/utils";
 import { routeParamFromInternalId } from "@/lib/products";
@@ -62,9 +63,16 @@ function SearchDropdown({
               <p className="text-sm font-semibold text-[#111111] dark:text-foreground">
                 No matching parts found
               </p>
-              <p className="mt-1.5 text-xs font-medium text-[#111111]/65 dark:text-muted-foreground">
-                Coming soon
-              </p>
+              <Link
+                href="/support"
+                onClick={onPick}
+                className={cn(
+                  "mt-4 inline-flex w-full max-w-[16rem] items-center justify-center rounded-2xl px-4 py-2.5 text-sm font-semibold",
+                  addToCartGradientClassesNoGlow()
+                )}
+              >
+                Request this part
+              </Link>
             </div>
           ) : (
             <ul className="max-h-[min(70vh,420px)] divide-y divide-zinc-100 overflow-auto py-1 dark:divide-border/50">
@@ -682,9 +690,16 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
                         <p className="text-sm font-semibold text-foreground">
                           No matching parts found
                         </p>
-                        <p className="mt-1 text-xs text-muted-foreground">
-                          Coming soon
-                        </p>
+                        <Link
+                          href="/support"
+                          onClick={() => setMobileOpen(false)}
+                          className={cn(
+                            "mt-4 inline-flex w-full items-center justify-center rounded-2xl px-4 py-2.5 text-sm font-semibold",
+                            addToCartGradientClassesNoGlow()
+                          )}
+                        >
+                          Request this part
+                        </Link>
                       </div>
                     ) : (
                       <ul className="max-h-[40vh] space-y-2 overflow-auto">
