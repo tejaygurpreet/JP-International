@@ -1,3 +1,5 @@
+import { soundSrc } from "@/lib/asset-version";
+
 /**
  * Imperative cart sound playback (safe to call from Zustand).
  * Audio is created lazily on first play so it runs in the same user-gesture stack as add/remove.
@@ -9,9 +11,9 @@ let removeSound: HTMLAudioElement | null = null;
 function ensureSounds() {
   if (typeof window === "undefined") return;
   if (!addSound) {
-    addSound = new Audio("/sounds/add-to-cart.mp3");
+    addSound = new Audio(soundSrc("/sounds/add-to-cart.mp3"));
     addSound.volume = 0.45;
-    removeSound = new Audio("/sounds/remove-from-cart.mp3");
+    removeSound = new Audio(soundSrc("/sounds/remove-from-cart.mp3"));
     removeSound.volume = 0.4;
   }
 }

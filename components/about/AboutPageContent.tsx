@@ -213,7 +213,7 @@ export function AboutPageContent() {
                 <div className="flex flex-col gap-8 md:flex-row md:items-stretch md:gap-10 lg:gap-12">
                   <motion.div
                     className={cn(
-                      "relative aspect-[4/3] w-full md:max-w-[min(100%,440px)] md:shrink-0",
+                      "relative aspect-[29/35] w-full md:max-w-[min(100%,440px)] md:shrink-0",
                       aboutImageFrame
                     )}
                     whileHover={{ scale: 1.01 }}
@@ -223,7 +223,7 @@ export function AboutPageContent() {
                       src={imageSrc("/images/about-owners.jpg")}
                       alt="JP Parts owners"
                       fill
-                      className="object-cover"
+                      className="object-cover object-center"
                       sizes="(max-width: 768px) 100vw, 440px"
                     />
                   </motion.div>

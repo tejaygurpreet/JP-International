@@ -235,7 +235,7 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
   const onDarkChrome = floating || navyPill;
 
   const navLinkClass = cn(
-    "group relative rounded-lg py-2 font-semibold transition-colors duration-300",
+    "group relative rounded-lg py-2 font-light transition-colors duration-[1100ms] ease-[cubic-bezier(0.16,1,0.32,1)]",
     navyPill
       ? "px-1.5 text-[15px] sm:px-2 sm:text-base"
       : "px-2 text-lg sm:px-2.5",
@@ -253,8 +253,8 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
       )}
       <header
         className={cn(
-          "top-0 z-50 w-full ease-out",
-          "transition-all duration-300",
+          "top-0 z-50 w-full",
+          "transition-[padding] duration-[1100ms] ease-[cubic-bezier(0.16,1,0.32,1)] motion-reduce:transition-none",
           navyPill && "fixed left-0 right-0 border-transparent bg-transparent pt-3 shadow-none sm:pt-4",
           floating && "fixed left-0 right-0 border-transparent bg-transparent shadow-none"
         )}
@@ -262,7 +262,7 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
         <div
           className={cn(
             "relative mx-auto flex h-16 max-w-7xl items-center gap-2 sm:gap-3",
-            "transition-all duration-300 ease-out",
+            "transition-[max-width,border-radius,background-color,box-shadow,border-color,padding-inline,color] duration-[1100ms] ease-[cubic-bezier(0.16,1,0.32,1)] motion-reduce:transition-none",
             navyPill
               ? "max-w-[min(100%-1.25rem,80rem)] rounded-3xl border border-white/10 bg-[#001f3f] px-3 text-white shadow-[0_16px_44px_-14px_rgba(0,15,35,0.65),0_6px_22px_-6px_rgba(0,31,63,0.45)] sm:px-4 lg:max-w-7xl lg:px-6"
               : "px-4 sm:px-6 lg:px-8"
@@ -272,10 +272,7 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
             <Link
               href="/"
               aria-label="JP Parts International"
-              className={cn(
-                "group inline-flex shrink-0 items-center gap-2.5 transition hover:opacity-90",
-                floating && "drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]"
-              )}
+              className="group inline-flex shrink-0 items-center gap-2.5 transition hover:opacity-90"
             >
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white p-1.5 shadow-[0_2px_10px_rgba(0,0,0,0.12)] ring-1 ring-black/[0.06] dark:shadow-[0_2px_14px_rgba(0,0,0,0.45)] dark:ring-white/15">
                 <Image
@@ -746,7 +743,7 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
                     <Link
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
-                      className="block rounded-xl px-4 py-3.5 text-xl font-semibold text-foreground transition hover:bg-muted/80 hover:text-primary"
+                      className="block rounded-xl px-4 py-3.5 text-xl font-light text-foreground transition hover:bg-muted/80 hover:text-primary"
                     >
                       {link.label}
                     </Link>
