@@ -63,31 +63,31 @@ export const SHOP_CATEGORIES: ShopCategory[] = [
   {
     slug: "mazda",
     label: "Mazda",
-    image: "https://picsum.photos/id/1015/600/400",
+    image: "/images/mazda.jpg",
   },
   {
     slug: "honda",
     label: "Honda",
-    image: "https://picsum.photos/id/29/600/400",
+    image: "/images/honda.jpg",
   },
   {
     slug: "toyota",
     label: "Toyota",
-    image: "https://picsum.photos/id/201/600/400",
+    image: "/images/toyota.jpg",
   },
   {
     slug: "performance",
     label: "Performance",
-    image: "https://picsum.photos/id/1005/600/400",
+    image: "/images/performance.jpg",
   },
   {
     slug: "new-products",
     label: "New Products",
-    image: "https://picsum.photos/id/133/600/400",
+    image: "/images/new-products.jpg",
   },
   {
     slug: "special",
     label: "Castilleja / Special",
-    image: "https://picsum.photos/id/160/600/400",
+    image: "/images/castilleja.jpg",
   },
 ];

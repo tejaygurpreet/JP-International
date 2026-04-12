@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 import { SHOP_CATEGORIES } from "@/lib/home-catalog";
+import { imageSrc } from "@/lib/asset-version";
 import { cn } from "@/lib/utils";
 
 const tileVariants = {
@@ -64,7 +65,7 @@ export function ShopFor() {
           viewport={{ once: true, amount: 0.12 }}
           className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5 lg:gap-6"
         >
-          {SHOP_CATEGORIES.map((cat) => (
+          {SHOP_CATEGORIES.map((cat, index) => (
             <motion.div key={cat.slug} variants={tileVariants}>
               <Link
                 href="/coming-soon"
@@ -79,10 +80,11 @@ export function ShopFor() {
                 )}
               >
                 <Image
-                  src={cat.image}
+                  src={imageSrc(cat.image)}
                   alt={cat.label}
                   fill
                   sizes="(max-width: 768px) 50vw, 33vw"
+                  priority={index < 3}
                   className="object-cover transition duration-500 group-hover:scale-105"
                 />
                 <div
