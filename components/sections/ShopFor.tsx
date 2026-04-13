@@ -37,7 +37,7 @@ export function ShopFor() {
     <section
       id="shop-for"
       ref={sectionRef}
-      className="relative overflow-hidden border-t border-border/40 bg-background py-16 md:py-24 lg:py-28"
+      className="relative overflow-hidden border-t border-border/40 bg-background py-14 sm:py-16 md:py-24 lg:py-28"
     >
       <motion.div
         aria-hidden
@@ -47,13 +47,13 @@ export function ShopFor() {
         <div className="absolute left-1/2 top-1/2 h-[120%] w-[120%] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,rgba(0,163,255,0.08)_0%,transparent_55%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(0,163,255,0.12)_0%,transparent_50%)]" />
       </motion.div>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 pb-2 sm:px-6 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-10 text-3xl font-bold tracking-tight text-foreground sm:mb-12 sm:text-4xl md:text-5xl"
+          className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:mb-10 sm:text-3xl md:mb-12 md:text-4xl lg:text-5xl"
         >
           Shop For
         </motion.h2>
@@ -63,7 +63,7 @@ export function ShopFor() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.12 }}
-          className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-5 lg:gap-6"
+          className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 md:gap-5 lg:gap-6"
         >
           {SHOP_CATEGORIES.map((cat, index) => (
             <motion.div key={cat.slug} variants={tileVariants}>
@@ -93,7 +93,7 @@ export function ShopFor() {
                 />
                 <span
                   className={cn(
-                    "absolute bottom-4 left-4 right-4 text-xl font-bold tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] transition-[text-shadow,color] duration-300 md:text-2xl",
+                    "absolute bottom-3 left-3 right-3 text-base font-bold tracking-tight text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] transition-[text-shadow,color] duration-300 min-[400px]:bottom-4 min-[400px]:left-4 min-[400px]:right-4 min-[400px]:text-lg sm:text-xl md:text-2xl",
                     "group-hover:text-white group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.35),0_0_32px_rgba(0,163,255,0.25)]"
                   )}
                 >

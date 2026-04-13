@@ -56,7 +56,7 @@ function SearchDropdown({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute left-0 right-0 top-[calc(100%+6px)] z-[60] overflow-hidden rounded-2xl border border-zinc-200/90 bg-white shadow-[0_24px_48px_-12px_rgba(0,0,0,0.2)] backdrop-blur-xl dark:border-border/50 dark:bg-card/95 dark:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.65)]"
+          className="absolute left-0 right-0 top-[calc(100%+6px)] z-[85] overflow-hidden rounded-2xl border border-zinc-200/90 bg-white shadow-[0_24px_48px_-12px_rgba(0,0,0,0.2)] backdrop-blur-xl dark:border-border/50 dark:bg-card/95 dark:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.65)]"
         >
           {results.length === 0 ? (
             <div className="px-4 py-8 text-center">
@@ -221,14 +221,14 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
   const heroLightFloating = floating && isLight;
 
   const heroTrayIcon = cn(
-    "inline-flex !h-8 !w-8 !min-h-8 !min-w-8 shrink-0 items-center justify-center rounded-full !p-0 backdrop-blur-md transition-colors [&_svg]:size-[18px] [&_svg]:shrink-0",
+    "inline-flex !h-11 !w-11 !min-h-[44px] !min-w-[44px] shrink-0 items-center justify-center rounded-full !p-0 backdrop-blur-md transition-colors sm:!h-8 sm:!w-8 sm:!min-h-8 sm:!min-w-8 [&_svg]:size-[18px] sm:[&_svg]:size-[18px] [&_svg]:shrink-0",
     isLight
       ? "border border-black/10 !bg-white/80 text-[#111111] shadow-[0_2px_12px_rgba(0,0,0,0.08)] hover:!bg-white/90"
       : "border border-white/20 !bg-black/70 text-white hover:!bg-black/85"
   );
 
   const solidLightTrayIcon = cn(
-    "inline-flex !h-8 !w-8 !min-h-8 !min-w-8 shrink-0 items-center justify-center rounded-full !p-0 transition-colors [&_svg]:size-[18px] [&_svg]:shrink-0 [&_svg]:!text-white",
+    "inline-flex !h-11 !w-11 !min-h-[44px] !min-w-[44px] shrink-0 items-center justify-center rounded-full !p-0 transition-colors sm:!h-8 sm:!w-8 sm:!min-h-8 sm:!min-w-8 [&_svg]:size-[18px] [&_svg]:shrink-0 [&_svg]:!text-white",
     "border border-white/25 !bg-white/10 !text-white hover:!bg-white/20"
   );
 
@@ -286,7 +286,7 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
               </span>
               <span
                 className={cn(
-                  "max-w-[10rem] font-extrabold leading-tight tracking-[0.1em] sm:max-w-none sm:text-sm md:text-base lg:text-lg",
+                  "hidden max-w-[10rem] font-extrabold leading-tight tracking-[0.1em] min-[400px]:inline sm:max-w-none sm:text-sm md:text-base lg:text-lg",
                   heroLightFloating ? "text-[#111111]" : "text-white"
                 )}
               >
@@ -297,14 +297,14 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
 
           <div
             ref={searchWrapRef}
-            className="relative hidden min-w-0 flex-1 px-2 md:block md:max-w-xl md:flex-none lg:max-w-2xl lg:flex-1 lg:px-6"
+            className="relative z-30 flex min-w-0 flex-1 px-1 sm:px-2 md:max-w-xl md:flex-none lg:max-w-2xl lg:flex-1 lg:px-6"
           >
-            <label className="relative block">
+            <label className="relative block w-full min-w-0">
               <span className="sr-only">Search parts</span>
               <div className="relative overflow-hidden rounded-full">
                 <Search
                   className={cn(
-                    "pointer-events-none absolute left-4 top-1/2 z-20 size-[18px] -translate-y-1/2",
+                    "pointer-events-none absolute left-3 top-1/2 z-20 size-[18px] -translate-y-1/2 sm:left-4",
                     heroLightFloating
                       ? "text-[#111111]/55"
                       : onDarkChrome
@@ -324,7 +324,7 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
                   }}
                   onFocus={() => setSearchOpen(true)}
                   className={cn(
-                    "relative z-10 h-12 w-full rounded-full border py-2 pl-12 pr-5 text-base font-medium shadow-inner outline-none transition-all duration-300",
+                    "relative z-10 h-11 min-h-[44px] w-full rounded-full border py-2 pl-10 pr-3 text-sm font-medium shadow-inner outline-none transition-all duration-300 sm:h-12 sm:min-h-0 sm:pl-12 sm:pr-5 sm:text-base",
                     floating && heroLightFloating
                       ? "border-black/15 bg-white/60 text-[#111111] placeholder:text-[#111111]/50 focus:border-black/25 focus:bg-white/85 focus:ring-2 focus:ring-[#00a3ff]/35"
                       : floating
@@ -401,30 +401,8 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
             ))}
           </nav>
 
-          <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon"
-              className={cn(
-                "md:hidden",
-                heroLightFloating &&
-                  "text-[#111111] hover:bg-black/5 hover:text-black",
-                !heroLightFloating &&
-                  onDarkChrome &&
-                  "text-white/90 hover:bg-white/10 hover:text-white"
-              )}
-              aria-label="Open search"
-              onClick={() => {
-                setMobileOpen(true);
-                requestAnimationFrame(() =>
-                  document.getElementById("mobile-search-field")?.focus()
-                );
-              }}
-            >
-              <Search className="size-5" />
-            </Button>
-            <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
+          <div className="ml-auto flex shrink-0 items-center gap-1 sm:gap-2 md:gap-3">
+            <div className="flex items-center gap-0.5 sm:gap-1 md:gap-3 lg:gap-6">
               <Button
                 type="button"
                 variant="ghost"
@@ -434,7 +412,7 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
                     ? heroTrayIcon
                     : navyPill
                       ? solidLightTrayIcon
-                      : "text-muted-foreground hover:text-foreground hover:shadow-[0_0_20px_-4px_rgba(0,163,255,0.45)]"
+                      : "h-11 min-h-[44px] w-11 min-w-[44px] text-muted-foreground hover:text-foreground hover:shadow-[0_0_20px_-4px_rgba(0,163,255,0.45)] sm:h-9 sm:min-h-9 sm:w-9 sm:min-w-9"
                 )}
                 aria-label="Account"
               >
@@ -544,7 +522,7 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
                       ? heroTrayIcon
                       : navyPill
                         ? solidLightTrayIcon
-                        : "text-muted-foreground hover:text-foreground hover:shadow-[0_0_20px_-4px_rgba(255,0,51,0.35)]"
+                        : "h-11 min-h-[44px] w-11 min-w-[44px] text-muted-foreground hover:text-foreground hover:shadow-[0_0_20px_-4px_rgba(255,0,51,0.35)] sm:h-9 sm:min-h-9 sm:w-9 sm:min-w-9"
                   )}
                   aria-label={`Shopping cart${cartCount ? `, ${cartCount} items` : ""}`}
                   onClick={openDrawer}
@@ -581,7 +559,7 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
               variant="ghost"
               size="icon"
               className={cn(
-                "lg:hidden",
+                "!h-11 !w-11 !min-h-[44px] !min-w-[44px] sm:!h-9 sm:!w-9 sm:!min-h-9 sm:!min-w-9 lg:hidden",
                 heroLightFloating &&
                   "text-[#111111] hover:bg-black/5 hover:text-black",
                 !heroLightFloating &&
@@ -657,82 +635,47 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
                   type="button"
                   variant="ghost"
                   size="icon"
+                  className="h-11 min-h-[44px] w-11 min-w-[44px]"
                   aria-label="Close"
                   onClick={() => setMobileOpen(false)}
                 >
                   <X className="size-6" />
                 </Button>
               </div>
-              <div className="border-b border-border/50 p-4">
-                <label className="relative block">
-                  <span className="sr-only">Search</span>
-                  <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-                  <input
-                    id="mobile-search-field"
-                    type="search"
-                    autoComplete="off"
-                    placeholder="Search parts, models, brands..."
-                    value={query}
-                    onChange={(e) => {
-                      setQuery(e.target.value);
-                      setSearchOpen(true);
-                    }}
-                    className="h-12 w-full rounded-xl border border-border/80 bg-background py-2 pl-10 pr-3 text-base font-medium outline-none ring-ring/30 focus:border-primary/50 focus:ring-2 dark:bg-[rgb(26_26_26)]"
-                  />
-                </label>
-                {query.trim().length > 0 && (
-                  <div className="mt-3">
-                    {results.length === 0 ? (
-                      <div className="rounded-xl border border-border/50 bg-muted/20 px-3 py-6 text-center dark:bg-muted/10">
-                        <p className="text-sm font-semibold text-foreground">
-                          No matching parts found
-                        </p>
-                        <Link
-                          href="/support"
-                          onClick={() => setMobileOpen(false)}
-                          className={cn(
-                            "mt-4 inline-flex w-full items-center justify-center rounded-2xl px-4 py-2.5 text-sm font-semibold",
-                            addToCartGradientClassesNoGlow()
-                          )}
-                        >
-                          Request this part
-                        </Link>
-                      </div>
-                    ) : (
-                      <ul className="max-h-[40vh] space-y-2 overflow-auto">
-                        {results.map((p) => (
-                          <li key={p.id}>
-                            <Link
-                              href={`/products/${routeParamFromInternalId(p.id)}`}
-                              onClick={() => setMobileOpen(false)}
-                              className="flex gap-3 rounded-xl border border-border/50 bg-muted/30 p-2 transition hover:border-primary/40 hover:shadow-[0_0_20px_-6px_rgba(0,163,255,0.35)]"
-                            >
-                              <div className="relative size-12 shrink-0 overflow-hidden rounded-lg">
-                                <Image
-                                  src={p.image}
-                                  alt=""
-                                  fill
-                                  sizes="48px"
-                                  className="object-cover"
-                                />
-                              </div>
-                              <div className="min-w-0">
-                                <p className="truncate text-base font-semibold">
-                                  {p.name}
-                                </p>
-                                <p className="text-sm text-muted-foreground">
-                                  {p.price}
-                                </p>
-                              </div>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                )}
+              <div className="border-b border-border/50 p-4 sm:hidden">
+                <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+                  Region &amp; currency
+                </p>
+                <div className="grid grid-cols-3 gap-2">
+                  {(
+                    [
+                      { id: "CA" as CurrencyRegion, short: "CAD" },
+                      { id: "US" as CurrencyRegion, short: "USD" },
+                      { id: "EU" as CurrencyRegion, short: "EUR" },
+                    ] as const
+                  ).map((opt) => (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      className={cn(
+                        "flex min-h-[44px] flex-col items-center justify-center gap-0.5 rounded-xl border px-2 py-2 text-sm font-semibold transition",
+                        currencyRegion === opt.id
+                          ? "border-primary/50 bg-primary/10 text-primary"
+                          : "border-border/60 bg-muted/30 text-foreground hover:border-primary/35 hover:bg-muted/50"
+                      )}
+                      onClick={() => {
+                        setCurrencyRegion(opt.id);
+                      }}
+                    >
+                      <span className="text-lg leading-none" aria-hidden>
+                        {REGION_FLAGS[opt.id]}
+                      </span>
+                      <span className="text-xs">{opt.short}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="flex flex-1 flex-col gap-1 overflow-y-auto p-4">
+              <div className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 py-3 sm:px-4">
                 {HEADER_NAV_LINKS.map((link, i) => (
                   <motion.div
                     key={link.href}
@@ -743,14 +686,14 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
                     <Link
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
-                      className="block rounded-xl px-4 py-3.5 text-xl font-light text-foreground transition hover:bg-muted/80 hover:text-primary"
+                      className="flex min-h-[48px] items-center rounded-xl px-4 py-3 text-lg font-medium text-foreground transition active:bg-muted/80 hover:bg-muted/60 hover:text-primary"
                     >
                       {link.label}
                     </Link>
                   </motion.div>
                 ))}
               </div>
-              <div className="border-t border-border/60 p-4">
+              <div className="border-t border-border/60 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
                 <div className="flex items-center justify-center gap-4">
                   <ThemeToggle />
                   <span className="text-base font-medium text-muted-foreground">

@@ -81,7 +81,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
                 aria-hidden
               />
             </div>
-            <h3 className="line-clamp-2 min-h-[2.75rem] px-4 pt-4 text-lg font-semibold leading-snug tracking-tight text-muted-foreground sm:px-5 sm:text-xl">
+            <h3 className="line-clamp-2 min-h-[2.5rem] px-3 pt-3 text-base font-semibold leading-snug tracking-tight text-muted-foreground sm:min-h-[2.75rem] sm:px-5 sm:pt-4 sm:text-lg md:text-xl">
               Coming Soon
             </h3>
           </div>
@@ -106,7 +106,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
                 aria-hidden
               />
             </div>
-            <h3 className="line-clamp-2 min-h-[2.75rem] px-4 pt-4 text-lg font-semibold leading-snug tracking-tight text-foreground sm:px-5 sm:text-xl">
+            <h3 className="line-clamp-2 min-h-[2.5rem] px-3 pt-3 text-base font-semibold leading-snug tracking-tight text-foreground sm:min-h-[2.75rem] sm:px-5 sm:pt-4 sm:text-lg md:text-xl">
               {product.name}
             </h3>
             {product.description ? (
@@ -116,9 +116,9 @@ export function ProductCard({ product, className }: ProductCardProps) {
             ) : null}
           </Link>
         )}
-        <div className="flex flex-1 flex-col gap-3 p-4 pt-3 sm:p-5 sm:pt-3">
-          <div className="mt-auto flex flex-col gap-3">
-            <p className="text-xl font-semibold tabular-nums tracking-tight text-primary sm:text-2xl">
+        <div className="flex flex-1 flex-col gap-2 p-3 pt-2 sm:gap-3 sm:p-5 sm:pt-3">
+          <div className="mt-auto flex flex-col gap-2 sm:gap-3">
+            <p className="text-lg font-semibold tabular-nums tracking-tight text-primary sm:text-xl md:text-2xl">
               {displayPrice}
             </p>
             <motion.button
@@ -144,11 +144,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
                 useToastStore.getState().show("Added to cart!");
               }}
               className={cn(
-                "w-full rounded-2xl py-3 text-lg font-semibold transition",
+                "min-h-[48px] w-full rounded-2xl py-3 text-base font-semibold transition sm:text-lg",
                 isCs
                   ? "cursor-not-allowed border border-border/60 bg-muted/50 text-muted-foreground shadow-md dark:bg-muted/20"
                   : addToCartGradientClasses(
-                      "w-full rounded-2xl py-3 text-lg font-semibold"
+                      "w-full rounded-2xl py-3 text-base font-semibold sm:text-lg"
                     )
               )}
             >

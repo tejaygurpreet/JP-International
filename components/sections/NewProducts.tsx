@@ -45,7 +45,7 @@ export function NewProducts() {
     <section
       id="new-products"
       ref={sectionRef}
-      className="relative overflow-hidden border-t border-border/40 bg-background py-16 md:py-24 lg:py-28"
+      className="relative overflow-hidden border-t border-border/40 bg-background py-14 sm:py-16 md:py-24 lg:py-28"
     >
       <motion.div
         aria-hidden
@@ -59,21 +59,21 @@ export function NewProducts() {
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 flex flex-col gap-4 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between md:mb-12">
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl"
+            className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl"
           >
             New Product Catalogue
           </motion.h2>
-          <div className="flex flex-wrap items-center gap-3 self-start sm:self-auto">
+          <div className="flex flex-wrap items-center gap-2 self-stretch sm:gap-3 sm:self-auto">
             <Link
               href="/coming-soon"
               className={cn(
-                "inline-flex items-center justify-center rounded-full border border-border/70 bg-card px-5 py-2.5 text-sm font-semibold text-foreground shadow-sm transition",
+                "inline-flex min-h-[44px] items-center justify-center rounded-full border border-border/70 bg-card px-5 py-2.5 text-sm font-semibold text-foreground shadow-sm transition",
                 "hover:border-primary/45 hover:text-primary hover:shadow-[0_0_28px_-6px_rgba(0,163,255,0.35)]",
                 "dark:border-border/50 dark:bg-[rgb(22_22_22)] dark:hover:shadow-[0_0_32px_-6px_rgba(0,163,255,0.25)]"
               )}
@@ -121,7 +121,7 @@ export function NewProducts() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
-          className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6"
+          className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 lg:gap-6"
         >
           {visible.map((product) => (
             <ProductCard key={product.id} product={product} />

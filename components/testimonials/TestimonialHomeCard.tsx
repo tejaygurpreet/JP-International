@@ -58,7 +58,7 @@ export function TestimonialHomeCard({
           type="button"
           variant="outline"
           size="sm"
-          className="mt-3 h-9 w-full rounded-full border-primary/35 text-xs font-semibold hover:bg-primary/10 hover:text-primary"
+          className="mt-3 min-h-[44px] w-full rounded-full border-primary/35 text-sm font-semibold hover:bg-primary/10 hover:text-primary"
           onClick={onReadMore}
         >
           Read more

@@ -145,7 +145,7 @@ export function Hero() {
                 transition: { staggerChildren: 0.09, delayChildren: 0.04 },
               },
             }}
-            className="flex flex-1 flex-col items-center justify-center px-1 pb-4 pt-[4.5rem] text-center sm:pt-20 md:pt-24"
+            className="flex flex-1 flex-col items-center justify-center px-3 pb-4 pt-[4.25rem] text-center min-[400px]:px-4 sm:pt-20 md:pt-24"
           >
             <motion.h1
               variants={{
@@ -157,15 +157,10 @@ export function Hero() {
                 },
               }}
               className={cn(
-                "max-w-[min(100%,44rem)] text-balance font-extrabold tracking-[0.02em]",
+                "max-w-[min(100%,44rem)] text-balance text-[1.35rem] font-extrabold leading-[1.12] tracking-[0.02em] min-[400px]:text-[1.5rem] sm:text-[clamp(1.65rem,4vw,4.1rem)] sm:leading-[1.12]",
                 !isLight &&
                   "text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.7)] dark:drop-shadow-[0_3px_24px_rgba(0,0,0,0.75)]"
               )}
-              style={{
-                fontSize:
-                  "clamp(1.6rem, 4vw + 0.75rem, min(4.1rem, 6.5vw))",
-                lineHeight: 1.12,
-              }}
             >
               <span
                 className={cn(
@@ -196,7 +191,7 @@ export function Hero() {
                 },
               }}
               className={cn(
-                "mx-auto mt-5 max-w-3xl text-pretty text-xl font-medium leading-relaxed sm:mt-6 sm:text-2xl md:mt-7 md:text-3xl md:leading-relaxed",
+                "mx-auto mt-4 max-w-[min(100%,36rem)] text-pretty px-1 text-base font-medium leading-relaxed sm:mt-6 sm:max-w-3xl sm:text-xl sm:leading-relaxed md:mt-7 md:text-2xl lg:text-3xl lg:leading-relaxed",
                 isLight
                   ? "text-[#111111]"
                   : "text-white/95"
@@ -222,57 +217,58 @@ export function Hero() {
           delay: 0.15,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className="relative z-20 -mt-7 flex w-full justify-center px-4 sm:-mt-9 md:-mt-10"
+        className="relative z-20 -mt-6 flex w-full justify-center px-3 sm:-mt-9 sm:px-4 md:-mt-10"
       >
-        {/* Navy capsule: #001f3f gradient ring + layered glow (stronger in light mode) */}
+        {/* Navy capsule: responsive — rounded pill on sm+, soft capsule on narrow phones */}
         <div
           className={cn(
-            "w-full max-w-6xl rounded-[9999px] p-[2px]",
+            "w-full max-w-6xl rounded-[26px] p-[2px] sm:rounded-[9999px]",
             "bg-gradient-to-r from-[#001f3f] via-[#001f3f] to-[#003366]",
             isLight ? "shadow-md" : "shadow-[0_0_0_1px_rgba(0,31,63,0.45),0_0_24px_rgba(0,51,102,0.38),0_0_48px_rgba(0,31,63,0.28),0_0_82px_rgba(0,51,102,0.16),0_12px_40px_-6px_rgba(0,0,0,0.5)]"
           )}
         >
           <div
             className={cn(
-              "flex min-w-0 flex-row flex-nowrap items-end justify-between gap-3 overflow-x-auto overflow-y-visible rounded-[9999px] px-5 py-5 [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-4 sm:px-8 sm:py-6 md:gap-5 lg:gap-6 lg:px-10 [&::-webkit-scrollbar]:hidden",
-              "backdrop-blur-2xl",
+              "flex min-w-0 flex-col gap-4 rounded-[24px] p-4 backdrop-blur-2xl sm:rounded-[9999px] sm:p-5 sm:py-6 md:flex-row md:flex-nowrap md:items-end md:justify-between md:gap-5 md:overflow-x-auto md:overflow-y-visible md:px-8 md:py-6 md:[-ms-overflow-style:none] md:[scrollbar-width:none] lg:gap-6 lg:px-10 md:[&::-webkit-scrollbar]:hidden",
               isLight
                 ? "bg-[#001f3f] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12),inset_0_0_1px_rgba(255,255,255,0.15)]"
                 : "bg-[rgba(6,10,16,0.9)] shadow-[inset_0_1px_0_rgba(255,255,255,0.14),inset_0_-3px_14px_rgba(0,0,0,0.5),inset_0_0_28px_rgba(0,31,63,0.14),inset_0_0_1px_rgba(0,51,102,0.22)]"
             )}
           >
-            <SelectField
-              id={`${id}-year`}
-              label="Year"
-              value={year}
-              onChange={setYear}
-              options={YEARS}
-              isLight={isLight}
-            />
-            <SelectField
-              id={`${id}-make`}
-              label="Make"
-              value={make}
-              onChange={setMake}
-              options={MAKES}
-              isLight={isLight}
-            />
-            <SelectField
-              id={`${id}-model`}
-              label="Model"
-              value={model}
-              onChange={setModel}
-              options={MODELS}
-              isLight={isLight}
-            />
-            <SelectField
-              id={`${id}-trim`}
-              label="Trim / Engine"
-              value={trim}
-              onChange={setTrim}
-              options={TRIMS}
-              isLight={isLight}
-            />
+            <div className="grid w-full grid-cols-2 gap-3 min-[480px]:gap-4 md:contents">
+              <SelectField
+                id={`${id}-year`}
+                label="Year"
+                value={year}
+                onChange={setYear}
+                options={YEARS}
+                isLight={isLight}
+              />
+              <SelectField
+                id={`${id}-make`}
+                label="Make"
+                value={make}
+                onChange={setMake}
+                options={MAKES}
+                isLight={isLight}
+              />
+              <SelectField
+                id={`${id}-model`}
+                label="Model"
+                value={model}
+                onChange={setModel}
+                options={MODELS}
+                isLight={isLight}
+              />
+              <SelectField
+                id={`${id}-trim`}
+                label="Trim / Engine"
+                value={trim}
+                onChange={setTrim}
+                options={TRIMS}
+                isLight={isLight}
+              />
+            </div>
             <motion.button
               type="button"
               whileHover={
@@ -291,12 +287,12 @@ export function Hero() {
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 450, damping: 26 }}
               className={cn(
-                "h-11 min-h-11 shrink-0 rounded-[9999px] px-6 pl-4 text-lg font-semibold outline-none transition",
+                "h-12 min-h-[48px] w-full shrink-0 rounded-2xl px-6 text-base font-semibold outline-none transition sm:rounded-[9999px] md:h-11 md:min-h-0 md:w-auto md:px-8 md:text-lg",
                 "focus-visible:ring-2 focus-visible:ring-[#00a3ff]/45 focus-visible:ring-offset-2",
                 isLight
                   ? "border border-white/25 bg-white/10 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] hover:bg-white/15 focus-visible:ring-offset-[#001f3f]"
                   : "border-0 border-l-2 border-l-[#4a6fa5]/45 bg-gradient-to-r from-[#002a4a] to-[#003d66] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_0_20px_rgba(0,51,102,0.4),0_4px_18px_rgba(0,20,40,0.45)] focus-visible:ring-[#001f3f]/50 focus-visible:ring-offset-[rgba(5,9,15,0.95)]",
-                "sm:px-8 sm:pl-5"
+                "md:border-l-2"
               )}
             >
               Find My Parts
@@ -324,11 +320,11 @@ function SelectField({
   isLight: boolean;
 }) {
   return (
-    <div className="relative w-[min(42vw,9.5rem)] shrink-0 min-[480px]:w-[8.75rem] min-[640px]:min-w-[7rem] min-[640px]:flex-1 min-[640px]:w-auto">
+    <div className="relative w-full min-w-0 md:w-[min(42vw,9.5rem)] md:max-w-[10.5rem] md:shrink-0 lg:flex-1 lg:max-w-none">
       <label
         htmlFor={id}
         className={cn(
-          "mb-1 block text-left text-[10px] font-semibold uppercase tracking-[0.1em] sm:text-xs",
+          "mb-1.5 block text-left text-[11px] font-semibold uppercase tracking-[0.12em] sm:text-xs",
           isLight ? "text-white/70" : "text-white/55"
         )}
       >
@@ -340,7 +336,7 @@ function SelectField({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           className={cn(
-            "h-10 w-full min-w-0 cursor-pointer appearance-none rounded-xl py-2 pl-2.5 pr-7 text-sm font-semibold antialiased outline-none backdrop-blur-sm transition sm:h-11 sm:pl-3 sm:pr-8 sm:text-base",
+            "h-12 min-h-[48px] w-full min-w-0 cursor-pointer appearance-none rounded-xl py-2 pl-3 pr-10 text-base font-semibold antialiased outline-none backdrop-blur-sm transition md:h-11 md:min-h-0 md:py-2 md:pl-2.5 md:pr-8 md:text-sm lg:text-base",
             isLight
               ? "border border-white/25 bg-white/10 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] hover:border-white/40 hover:bg-white/15 focus:border-white/50 focus:ring-2 focus:ring-[#00a3ff]/35"
               : "border border-white/20 bg-white/[0.07] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] hover:border-[#4a6fa5]/45 hover:bg-white/[0.1] focus:border-[#5a7fb5]/75 focus:ring-2 focus:ring-[#003366]/35"
@@ -360,7 +356,7 @@ function SelectField({
         </select>
         <ChevronDown
           className={cn(
-            "pointer-events-none absolute right-1.5 top-1/2 size-3.5 -translate-y-1/2 sm:right-2 sm:size-4",
+            "pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 sm:right-2 sm:size-4",
             isLight ? "text-white/80" : "text-white/75"
           )}
           aria-hidden

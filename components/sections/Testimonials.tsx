@@ -27,7 +27,7 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative border-t border-border/40 bg-muted/20 py-16 dark:bg-muted/10 md:py-24 lg:py-28"
+      className="relative border-t border-border/40 bg-muted/20 py-14 dark:bg-muted/10 sm:py-16 md:py-24 lg:py-28"
     >
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.h2
@@ -35,7 +35,7 @@ export function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-10 text-3xl font-bold tracking-tight text-foreground sm:mb-12 sm:text-4xl md:text-5xl"
+          className="mb-8 text-2xl font-bold tracking-tight text-foreground sm:mb-10 sm:text-3xl md:mb-12 md:text-4xl lg:text-5xl"
         >
           What Our Customers Say
         </motion.h2>
@@ -45,7 +45,7 @@ export function Testimonials() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.12 }}
-          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4"
+          className="grid grid-cols-1 gap-5 min-[480px]:grid-cols-2 xl:grid-cols-4"
         >
           {items.map((t) => (
             <TestimonialHomeCard
