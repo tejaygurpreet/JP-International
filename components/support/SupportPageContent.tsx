@@ -47,7 +47,7 @@ function ContactCard() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, ease, delay: 0.1 }}
-      className="lg:sticky lg:top-28"
+      className="relative z-20"
       style={{ perspective: 1100 }}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
@@ -158,7 +158,7 @@ export function SupportPageContent() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header isHome={false} />
-      <main className="relative flex-1 overflow-hidden border-t border-border/30 bg-background">
+      <main className="relative flex-1 overflow-x-hidden border-t border-border/30 bg-background">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-[0.4] dark:opacity-[0.55]"
@@ -328,9 +328,23 @@ export function SupportPageContent() {
               </form>
             </motion.section>
 
-            <aside className="lg:col-span-5">
+            <aside className="order-last lg:order-none lg:col-span-5 lg:hidden">
               <ContactCard />
             </aside>
+
+            <div
+              className="hidden min-h-[1px] lg:col-span-5 lg:block"
+              aria-hidden
+            />
+          </div>
+
+          {/* Floats over the page on large screens while content scrolls */}
+          <div className="pointer-events-none fixed inset-x-0 top-28 z-30 hidden lg:block">
+            <div className="mx-auto flex max-w-7xl justify-end px-4 sm:px-6 lg:px-8">
+              <div className="pointer-events-auto w-full max-w-sm xl:max-w-md">
+                <ContactCard />
+              </div>
+            </div>
           </div>
         </div>
       </main>

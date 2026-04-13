@@ -6,8 +6,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Minus, Plus, X } from "lucide-react";
 import { useEffect } from "react";
 
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { useBodyScrollLock } from "@/hooks/use-body-scroll-lock";
+import { addToCartGradientClasses } from "@/lib/add-to-cart-styles";
 import { cn } from "@/lib/utils";
 import { formatMoneyFromCadCents } from "@/store/useCurrencyStore";
 import { useCurrencyStore } from "@/store/useCurrencyStore";
@@ -192,11 +193,11 @@ export function SlidingCart() {
                     href="/checkout"
                     onClick={closeDrawer}
                     className={cn(
-                      buttonVariants({ variant: "default" }),
-                      "inline-flex h-12 w-full items-center justify-center rounded-xl bg-primary text-lg font-semibold text-primary-foreground shadow-[0_8px_28px_-8px_rgba(0,163,255,0.45)] hover:bg-primary/90"
+                      "inline-flex h-12 min-h-[48px] w-full items-center justify-center rounded-xl text-lg font-semibold",
+                      addToCartGradientClasses()
                     )}
                   >
-                    View Cart / Checkout
+                    Checkout
                   </Link>
                 </motion.div>
               </div>

@@ -56,7 +56,7 @@ function SearchDropdown({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute left-0 right-0 top-[calc(100%+6px)] z-[85] overflow-hidden rounded-2xl border border-zinc-200/90 bg-white shadow-[0_24px_48px_-12px_rgba(0,0,0,0.2)] backdrop-blur-xl dark:border-border/50 dark:bg-card/95 dark:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.65)]"
+          className="absolute left-0 right-0 top-[calc(100%+6px)] z-[85] w-full min-w-0 overflow-hidden rounded-2xl border border-zinc-200/90 bg-white shadow-[0_24px_48px_-12px_rgba(0,0,0,0.2)] backdrop-blur-xl dark:border-border/50 dark:bg-card/95 dark:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.65)]"
         >
           {results.length === 0 ? (
             <div className="px-4 py-8 text-center">
@@ -75,7 +75,7 @@ function SearchDropdown({
               </Link>
             </div>
           ) : (
-            <ul className="max-h-[min(70vh,420px)] divide-y divide-zinc-100 overflow-auto py-1 dark:divide-border/50">
+            <ul className="max-h-[min(70vh,420px)] divide-y divide-zinc-100 overflow-y-auto overflow-x-hidden overscroll-contain py-1 dark:divide-border/50">
               {results.map((p, i) => (
                 <motion.li
                   key={p.id}
@@ -90,25 +90,25 @@ function SearchDropdown({
                   <Link
                     href={`/products/${routeParamFromInternalId(p.id)}`}
                     onClick={onPick}
-                    className="group flex gap-3 px-3 py-2.5 transition hover:bg-zinc-100 dark:hover:bg-muted/70"
+                    className="group flex min-h-[4.5rem] items-center gap-3 px-3 py-3 transition active:bg-zinc-100/80 hover:bg-zinc-100 dark:active:bg-muted/50 dark:hover:bg-muted/70 sm:min-h-0 sm:py-2.5 sm:pl-3 sm:pr-3"
                   >
-                    <div className="relative size-14 shrink-0 overflow-hidden rounded-xl border border-zinc-200/80 bg-zinc-50 dark:border-border/50 dark:bg-muted/40">
+                    <div className="relative size-12 shrink-0 overflow-hidden rounded-lg border border-zinc-200/80 bg-zinc-50 sm:size-14 sm:rounded-xl dark:border-border/50 dark:bg-muted/40">
                       <Image
                         src={p.image}
                         alt=""
                         fill
-                        sizes="56px"
+                        sizes="(max-width:640px) 48px, 56px"
                         className="object-cover transition duration-300 group-hover:scale-105"
                       />
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-base font-semibold text-[#111111] group-hover:text-[#001f3f] dark:text-foreground dark:group-hover:text-primary">
+                    <div className="min-w-0 flex-1 py-0.5">
+                      <p className="line-clamp-2 text-left text-sm font-semibold leading-snug text-[#111111] group-hover:text-[#001f3f] dark:text-foreground dark:group-hover:text-primary sm:line-clamp-none sm:truncate sm:text-base sm:leading-normal">
                         {p.name}
                       </p>
-                      <p className="text-sm text-[#111111]/65 dark:text-muted-foreground">
+                      <p className="mt-0.5 truncate text-left text-xs text-[#111111]/65 dark:text-muted-foreground sm:text-sm">
                         {p.brand} · {p.sku}
                       </p>
-                      <p className="mt-0.5 text-base font-semibold tabular-nums text-[#001f3f] dark:text-primary">
+                      <p className="mt-0.5 text-left text-sm font-semibold tabular-nums text-[#001f3f] dark:text-primary sm:text-base">
                         {p.price}
                       </p>
                     </div>
@@ -286,7 +286,7 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
               </span>
               <span
                 className={cn(
-                  "hidden max-w-[10rem] font-extrabold leading-tight tracking-[0.1em] min-[400px]:inline sm:max-w-none sm:text-sm md:text-base lg:text-lg",
+                  "hidden max-w-[10rem] font-extrabold leading-tight tracking-[0.1em] md:inline md:max-w-none md:text-sm lg:text-base xl:text-lg",
                   heroLightFloating ? "text-[#111111]" : "text-white"
                 )}
               >
@@ -627,9 +627,7 @@ export function Header({ isHome: isHomePage = false }: HeaderProps) {
                       className="object-contain"
                     />
                   </span>
-                  <span className="max-w-[9rem] text-[0.65rem] font-extrabold leading-tight tracking-[0.1em] text-foreground sm:text-xs">
-                    JP PARTS INTL
-                  </span>
+                  <span className="hidden">JP PARTS INTL</span>
                 </Link>
                 <Button
                   type="button"
